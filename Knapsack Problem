@@ -1,0 +1,28 @@
+You are given an array of arrays. Each subarray in this array holds two integer values and represents an item; 
+the first integer is the item's value, and the second integer is the item's weight. You are also given an
+integer representing the maximum capacity of a knapsack that you have. Your goal is to fit items in your
+knapsack, all the while maximizing their combined value. Note that the sum of the weights of the items 
+that you pick cannot exceed the knapsack's capacity. Write a function that returns the maximized combined
+value of the items that you should pick, as well as an array of the indices of each item picked. Assume 
+that there will only be one combination of items that maximizes the total value in the knapsack.
+
+Example input: [[1,2],[4,3],[5,6],[6,7]], 10
+output : [10,[1,3]]
+
+
+function knapsackProblem(items, capacity){
+  
+}
+
+main(items, capacity)
+  matrix i = 0 i >= capacity i ++ --> allValues are set to [0, []] first index -> value, 2nd -> array of added indexes
+  
+  for(let i = 1; i < matrix.length; i++){
+    let currItem = items[i - 1]
+    for(let currCapacity = 1; currCapacity <= capacity; currCapacity++){
+      if(currItem[1] <= currCapacity){
+        let remainingWeight = currCapacity - currItem[1]
+        let remainingWeightValue = matrix[i - 1]
+      }
+    }
+  }
