@@ -11,9 +11,40 @@ output : [10,[1,3]]
 
 
 function knapsackProblem(items, capacity){
+  let matrix = []
+  for(let i = 0; i <= items.length){
+  let row  = []
+    for(let j = 0; j <= capacity; j++ ){
+      let obj = {value: 0, idx: []}
+      row.push(obj)
+    }
+    matrix.push(row)
+  }
   
+   for(let i = 1; i < matrix.length; i++){
+    let currItemWeight = items[i - 1][1]
+    let currItemValue = items[i - 1][0]
+      for(let cap = 1; cap <= capcity; cap++){
+        if(currItemWeight <= cap){
+          let remainingWeight = cap - currItemWeight
+          let remainingObj = matrix[i - 1][remainingWeight]
+          let newObj = {value : currItemValue + remainingObj.value, idx : [i - 1,...remainingObj.idx]}
+          matrix[i][capacity] = newObj
+        }else {
+          let topObj = matrix[i - 1][cap]
+          let leftObj = matrix[i][cap - 1]
+          matrix[i][capacity] = topObj.value > leftObj.value ? topObj : leftObj
+        }
+      }
+   }
+  let resultObj = matrix[items.length][capacity]
+  return [result.value, result.idx]
 }
 
+
+
+
+{value : num, idx : []}
 main(items, capacity)
   matrix i = 0 i >= capacity i ++ --> allValues are set to [0, []] first index -> value, 2nd -> array of added indexes
   
@@ -22,7 +53,17 @@ main(items, capacity)
     for(let currCapacity = 1; currCapacity <= capacity; currCapacity++){
       if(currItem[1] <= currCapacity){
         let remainingWeight = currCapacity - currItem[1]
-        let remainingWeightValue = matrix[i - 1]
+        let remainingWeightValue = matrix[i - 1][remainingWeight]
+        let obj = {weight : currItem[1], idx: [i - 1]}
+        if(remainingWeightValue.weight > 0){
+          obj.weight += remainingWeightValue.weight
+          obj.idx.push(...remainingWeightValue.idx)
+        }
+        matrix[i][currCapacity] = obj
       }
     }
   }
+  
+  
+ let resultObj = matrix[items.length][capacity]
+ return [resultObj.weight, resultObj.idx]
